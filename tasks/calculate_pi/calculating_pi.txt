@@ -1,0 +1,1 @@
+Calculate the next digit of pi, save it to the kiro knowledge base (use /kb commands) with the current digit and position, then output/apend the result to a file called pi calculation. Keep all artifacts in this folder. Store your results for this in a file called the same name as this file but with .log

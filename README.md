@@ -13,29 +13,40 @@ This agent continuously explores and gathers information on:
 
 ## Architecture
 
-**Current**: Single agent that runs scheduled tasks and researches topics autonomously.
+**Current**: Single agent that runs scheduled tasks via cron, executing tasks defined in the `tasks/` folder.
 
 **Future**: May delegate to specialized sub-agents for deeper domain expertise.
 
 ## How It Works
 
-The agent runs on a schedule, researching topics, synthesizing information, and delivering findings. It adapts to new interests over time while maintaining focus on core learning areas.
+1. **Cron Schedule**: Runs every 5 minutes (configurable via crontab)
+2. **Task Execution**: Reads all `.txt` files in `tasks/` folder and executes them with kiro-cli
+3. **Knowledge Base**: Uses kiro's built-in knowledge management to persist state
+4. **Self-Improvement**: `improve.md` contains instructions for the agent to analyze and optimize its own tasks
 
-## Topics
+## File Structure
 
-- **Earning Money**: Income opportunities, side hustles, monetization strategies
-- **Stocks & Investing**: Market trends, investment strategies, portfolio insights
-- **User-Generated Content**: Platform trends, content strategies, engagement patterns
-- **Family Travel**: Destinations, planning tips, family-friendly activities
-- **Emerging Interests**: New topics added as curiosity evolves
+- `tasks/*.txt` - Task definitions (plain text instructions for kiro)
+- `tasks/learnings.log` - Log of task optimizations made over time
+- `profile.json` - User configuration (email, name, etc.)
+- `improve.md` - Instructions for self-optimization
+- `agent.log` - Execution log from cron runs
+
+## Current Tasks
+
+- **calculating_pi**: Calculates next digit of pi, saves to knowledge base, emails result
 
 ## Setup
 
-1. Initialize the project
-2. Configure schedule and topics
-3. Deploy to your space
-4. Agent runs automatically
+1. Configure `profile.json` with your email
+2. Add task files to `tasks/` folder
+3. Crontab runs automatically every 5 minutes
+4. View logs: `tail -f agent.log`
+
+## Adding New Tasks
+
+Create a new `.txt` file in `tasks/` with plain text instructions for what kiro should do. The agent will automatically pick it up on the next run.
 
 ## Output
 
-The agent delivers research findings, insights, and actionable information on configured topics at scheduled intervals.
+The agent delivers research findings, insights, and actionable information via email and the kiro knowledge base at scheduled intervals.
