@@ -5,6 +5,7 @@ An always-on agent that runs on a schedule to research and learn about topics of
 ## Purpose
 
 This agent continuously explores and gathers information on:
+- Earning money and income opportunities
 - Stocks and investing strategies
 - User-generated content trends
 - Family travel destinations and tips
@@ -22,6 +23,7 @@ The agent runs on a schedule, researching topics, synthesizing information, and 
 
 ## Topics
 
+- **Earning Money**: Income opportunities, side hustles, monetization strategies
 - **Stocks & Investing**: Market trends, investment strategies, portfolio insights
 - **User-Generated Content**: Platform trends, content strategies, engagement patterns
 - **Family Travel**: Destinations, planning tips, family-friendly activities
