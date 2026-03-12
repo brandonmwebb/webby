@@ -19,18 +19,28 @@ This agent continuously explores and gathers information on:
 
 ## How It Works
 
-1. **Cron Schedule**: Runs every 5 minutes (configurable via crontab)
-2. **Task Execution**: Reads all `.txt` files in `tasks/` folder and executes them with kiro-cli
+1. **Cron Schedule**: Multiple scheduled jobs run at different intervals
+2. **Task Execution**: Reads all `.txt` files in `tasks/enabled/` folder and executes them with kiro-cli
 3. **Knowledge Base**: Uses kiro's built-in knowledge management to persist state
-4. **Self-Improvement**: `improve.md` contains instructions for the agent to analyze and optimize its own tasks
+4. **Self-Improvement**: `improve.md` analyzes and optimizes tasks every 2 hours
+5. **Governance**: `governance.md` validates task objectives every 6 hours
 
 ## File Structure
 
-- `tasks/*.txt` - Task definitions (plain text instructions for kiro)
+- `tasks/enabled/*.txt` - Active task definitions (plain text instructions for kiro)
+- `tasks/disabled/` - Tasks that failed governance validation
 - `tasks/learnings.log` - Log of task optimizations made over time
 - `profile.json` - User configuration (email, name, etc.)
-- `improve.md` - Instructions for self-optimization
+- `improve/improve.md` - Instructions for self-optimization (runs every 2 hours)
+- `governance/governance.md` - Task validation rules (runs every 6 hours)
+- `governance/governance.log` - Log of governance actions
 - `agent.log` - Execution log from cron runs
+
+## Cron Schedule
+
+- **Every hour**: Run all enabled tasks
+- **Every 2 hours**: Self-improvement analysis
+- **Every 6 hours**: Governance validation
 
 ## Current Tasks
 
@@ -39,13 +49,13 @@ This agent continuously explores and gathers information on:
 ## Setup
 
 1. Configure `profile.json` with your email
-2. Add task files to `tasks/` folder
-3. Crontab runs automatically every 5 minutes
+2. Add task files to `tasks/enabled/` folder
+3. Crontab runs automatically every hour
 4. View logs: `tail -f agent.log`
 
 ## Adding New Tasks
 
-Create a new `.txt` file in `tasks/` with plain text instructions for what kiro should do. The agent will automatically pick it up on the next run.
+Create a new `.txt` file in `tasks/enabled/` with plain text instructions for what kiro should do. Make sure to include a clear objective line (e.g., "Objective: Calculate and email the next digit of pi"). The agent will automatically pick it up on the next run.
 
 ## Output
 

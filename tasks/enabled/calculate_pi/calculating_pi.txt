@@ -1,0 +1,1 @@
+Calculate the next digit of pi using calculate_pi.py, update pi_state.json with the result, and append the digit and position to pi_calculation.txt. All files are in this folder.

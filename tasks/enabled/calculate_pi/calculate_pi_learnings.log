@@ -1,0 +1,24 @@
+# Task Optimization Log
+
+This file tracks improvements made to tasks over time.
+
+---
+
+## 2026-03-12T14:45:00
+
+**Task**: calculating_pi.txt
+**Changes Made**:
+1. Removed `/kb` command references - these are chat-only commands that fail in cron/non-interactive mode
+2. Simplified task instructions to just run calculate_pi.py and append to pi_calculation.txt
+3. Updated calculate_pi.py to be fully self-contained:
+   - Automatically updates pi_state.json
+   - Automatically appends results to pi_calculation.txt with timestamp
+   - No longer requires agent to manually handle file operations
+4. Removed obsolete files: pi_calculator.py and send_email.py (duplicates from failed runs)
+
+**Why It's Better**:
+- Eliminates all the "Tool approval required but --no-interactive was specified" errors
+- Single command execution instead of multiple steps
+- More reliable for cron scheduling
+- Agent just needs to run: `python3 calculate_pi.py`
+- Cleaner folder structure with no duplicate files
